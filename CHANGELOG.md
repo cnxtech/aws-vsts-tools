@@ -4,6 +4,7 @@
 * Issue #124, fix for missing permissions on the Elastic Beanstalk Deploy Application task documentation.
 * Merged PR #123, fix for missing permissions on the ECR Push Image task documentation.
 * Updated the Elastic Beanstalk Deploy Application task to detect when throttling errors exhaust the underlying SDKs retry capability and to automatically extend the event polling delay by some random amount instead of failing the task. The task also adds a random start delay prior to the first poll for events so that multiple simultaneous deployments do not all start event polling at, or very close to, the same time which could also lead to early throttling errors.
+* Issue #114, added support for specifying custom content encoding in the S3 Upload task.
 
 ### 1.1.8 (2018-11-01)
 

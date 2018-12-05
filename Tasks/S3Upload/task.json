@@ -207,7 +207,16 @@
             "label": "Content Type",
             "defaultValue": "",
             "required": false,
-            "helpMarkDown": "Sets a custom content type for the uploaded files. If a custom content type is not specified the task will apply built-in defaults for common file types (html, css, js, image files etc). This parameter can be used to override the built-in defaults.\n\n__Note:__ that any value is applied to __all__ files processed by the task.",
+            "helpMarkDown": "Sets a custom content type for the uploaded files. If a custom content type is not specified the task will apply built-in defaults for common file types (html, css, js, image files etc). This parameter can be used to override the built-in defaults. For more information go to [http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1](http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1).\n\n__Note:__ that any value is applied to __all__ files processed by the task.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "contentEncoding",
+            "type": "string",
+            "label": "Content Encoding",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Specifies the content encoding for the uploaded object(s). For more information go to [http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11).\n\n__Note:__ that any value is applied to __all__ files processed by the task.",
             "groupName": "advanced"
         },
         {

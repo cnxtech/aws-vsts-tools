@@ -30,6 +30,7 @@ export class TaskParameters extends AWSTaskParametersBase {
     public filesAcl: string;
     public createBucket: boolean;
     public contentType: string;
+    public contentEncoding: string;
     public forcePathStyleAddressing: boolean;
     public storageClass: string;
     public keyManagement: string;
@@ -49,6 +50,7 @@ export class TaskParameters extends AWSTaskParametersBase {
             this.filesAcl = tl.getInput('filesAcl', false);
             this.createBucket = tl.getBoolInput('createBucket');
             this.contentType = tl.getInput('contentType', false);
+            this.contentEncoding = tl.getInput('contentEncoding', false);
             this.forcePathStyleAddressing = tl.getBoolInput('forcePathStyleAddressing', false);
             this.storageClass = tl.getInput('storageClass', false);
             if (!this.storageClass) {
