@@ -125,7 +125,8 @@ export abstract class SdkUtils {
         // instance metadata
         if (awsServiceOpts) {
             if (!awsServiceOpts.credentials) {
-                awsServiceOpts.credentials = await taskParams.getCredentials();
+                const credentials = await taskParams.getCredentials();
+                awsServiceOpts.credentials = await credentials.getPromise();
             }
             if (!awsServiceOpts.region) {
                 awsServiceOpts.region = await taskParams.getRegion();
@@ -134,8 +135,9 @@ export abstract class SdkUtils {
             return new awsService(awsServiceOpts);
         }
 
+        const credentials = await taskParams.getCredentials();
         return new awsService({
-            credentials: await taskParams.getCredentials(),
+            credentials: credentials.getPromise(),
             region: await taskParams.getRegion()
         });
     }
