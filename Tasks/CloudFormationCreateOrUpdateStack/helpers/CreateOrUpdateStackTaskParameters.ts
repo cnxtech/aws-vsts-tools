@@ -90,7 +90,7 @@ export class TaskParameters extends AWSTaskParametersBase {
             }
 
             this.templateParametersSource = tl.getInput('templateParametersSource', true);
-			switch (this.templateParametersSource) {
+            switch (this.templateParametersSource) {
                 case TaskParameters.loadTemplateParametersFromFile: {
                     // Value set optional for backwards compatibilty, to enable continued operation of
                     // tasks configured before 'inline' mode was added.
@@ -116,7 +116,6 @@ export class TaskParameters extends AWSTaskParametersBase {
                 default:
                     throw new Error(`Unrecognized template parameters source: ${this.templateParametersSource}`);
             }
-            
 
             this.useChangeSet = tl.getBoolInput('useChangeSet', false);
             this.changeSetName = tl.getInput('changeSetName', this.useChangeSet);
