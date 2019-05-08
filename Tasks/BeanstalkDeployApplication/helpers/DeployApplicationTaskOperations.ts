@@ -191,15 +191,22 @@ export class TaskOperations {
                 requestEvents.StartTime = lastPrintedEventDate;
                 const responseEvent = await this.beanstalkClient.describeEvents(requestEvents).promise();
 
-                for (const event of responseEvent.Events.filter(e => e.EventDate <= lastPrintedEventDate)) {
-                    console.log(event.EventDate + '   ' + event.Severity + '   ' + event.Message)
+                if (responseEvent.Events.length > 0) {
+                    for (let i = responseEvent.Events.length - 1; i >= 0; i--) {
+                        const event = responseEvent.Events[i];
+                        if (event.EventDate <= lastPrintedEventDate) {
+                            continue;
+                        }
 
-                    if (event.Message === 'Failed to deploy application.') {
-                        success = false
+                        console.log(event.EventDate + '   ' + event.Severity + '   ' + event.Message);
+
+                        if (event.Message === 'Failed to deploy application.') {
+                            success = false;
+                        }
                     }
-                }
 
-                lastPrintedEventDate = responseEvent.Events[0].EventDate;
+                    lastPrintedEventDate = responseEvent.Events[0].EventDate;
+                }
             } catch (err) {
                 // if we are still encountering throttles, increase the poll delay some more
                 if (err.code === 'Throttling') {
